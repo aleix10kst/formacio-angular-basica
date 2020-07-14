@@ -1,0 +1,10 @@
+<div class="col mb-4">
+  <div class="card h-100">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.name}}</h5>
+      <p class="card-text">{{ product.description }}</p>
+      <p class="card-text">Price: <b>{{ product.price}}€</b></p>
+      <button (click)="onClickAddToCard(product.id)" class="btn btn-outline-dark">Add to cart</button>
+    </div>
+  </div>
+</div>

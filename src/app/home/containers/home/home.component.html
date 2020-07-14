@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col">
+    <ng-container *ngIf="products.length > 0; else noResults">
+      <div class="row row-cols-1 row-cols-md-3">
+        <app-product-card *ngFor="let product of products" [product]="product" (addToCart)="onAddToCart($event)"></app-product-card>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col">
+          <a routerLink="/checkout" class="btn btn-success float-right text-white" (click)="onClickCheckout()">Proceed to checkout</a>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #noResults>
+  <div class="text-center">
+    <h5>There are no products available right now.</h5>
+  </div>
+</ng-template>
