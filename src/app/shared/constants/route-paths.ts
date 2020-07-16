@@ -1,4 +1,5 @@
 export enum RoutePaths {
   Inici = 'inici',
-  Checkout = 'checkout'
+  Checkout = 'checkout',
+  User = 'user'
 }
