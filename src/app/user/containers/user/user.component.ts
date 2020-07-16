@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Address} from '../../models/address';
 
 @Component({
   selector: 'app-user',
@@ -9,20 +10,23 @@ import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 export class UserComponent implements OnInit {
 
   form: FormGroup;
-  addressForm: FormGroup;
 
-  loadedAddress: boolean = false;
+  loadedAddress: any;
+  loadedAddressIdx: number;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      userData: this.fb.group({}),
-      userAddresses: this.fb.array([])
-    });
-
-    this.addressForm = this.fb.group({
-      street: [],
-      postalCode: [],
-      city: []
+      userData: this.fb.group({
+        name: [],
+        lastname: []
+      }),
+      userAddresses: this.fb.array([
+        this.fb.group({
+          street: [],
+          postalCode: [],
+          city: []
+        })
+      ])
     });
   }
 
@@ -36,12 +40,31 @@ export class UserComponent implements OnInit {
     return this.form.get('userAddresses') as FormArray;
   }
 
-  onSubmitAddressForm(): void {}
+  onEditAddress(index: number): void {
+    this.loadedAddressIdx = index;
+    this.loadedAddress = this.userAddresses.at(index).value;
+  }
 
-  onResetAddressForm(): void {}
+  onDeleteAddress(index: number): void {
+    this.userAddresses.removeAt(index);
+  }
 
-  onClickEditAddress(index: number): void {}
+  onAddAddress({street, postalCode, city}: Address): void {
+    const addAddress: FormGroup = new FormGroup({
+      street: new FormControl(street),
+      postalCode: new FormControl(postalCode),
+      city: new FormControl(city)
+    });
+    this.userAddresses.push(addAddress);
+  }
 
-  onClickDeleteAddress(index: number): void {}
+  onUpdateAddress(address: Address): void {
+    this.userAddresses.at(this.loadedAddressIdx).setValue(address);
+    this.loadedAddress = this.loadedAddressIdx = null;
+  }
+
+  onCancelAddress(): void {
+    this.loadedAddress = this.loadedAddressIdx = null;
+  }
 
 }

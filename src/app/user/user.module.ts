@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './containers/user/user.component';
-import { AdressListComponent } from './components/user/adress-list/adress-list.component';
+import { AddressListComponent } from './components/user/adress-list/address-list.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { UserAddressPipe } from './pipes/user-address.pipe';
 import { AddressFormComponent } from './components/user/address-form/address-form.component';
 
 
 @NgModule({
-  declarations: [UserComponent, AdressListComponent, UserAddressPipe, AddressFormComponent],
+  declarations: [UserComponent, AddressListComponent, UserAddressPipe, AddressFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -1,1 +1,29 @@
-<p>address-form works!</p>
+<form [formGroup]="addressForm" (ngSubmit)="onSubmitAddressForm()" (reset)="onResetAddressForm()">
+  <div class="row">
+    <div class=" col form-group">
+      <label for="street">Carrer</label>
+      <input id="street" type="text" class="form-control" formControlName="street">
+    </div>
+    <div class=" col form-group">
+      <label for="postal-code">Codi postal</label>
+      <input id="postal-code" type="text" class="form-control" formControlName="postalCode">
+    </div>
+    <div class=" col form-group">
+      <label for="city">Ciutat</label>
+      <input id="city" type="text" class="form-control" formControlName="city">
+    </div>
+  </div>
+  <div class="d-flex justify-content-end">
+    <ng-container [ngTemplateOutlet]="loadedAddress ? editAddressTpl : addAddressTpl"></ng-container>
+  </div>
+</form>
+
+<ng-template #addAddressTpl>
+  <button class="btn btn-outline-success mr-2">Afegeix</button>
+  <button class="btn btn-outline-danger ml-2" type="reset">Esborra</button>
+</ng-template>
+
+<ng-template #editAddressTpl>
+  <button class="btn btn-outline-success mr-2">Actualitza</button>
+  <button class="btn btn-outline-danger ml-2" type="button" (click)="onCancelAddressForm()">Cancel·la</button>
+</ng-template>

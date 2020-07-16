@@ -1,0 +1,15 @@
+<ul class="list-group" *ngIf="addresses.length > 0; else noAddressesTpl">
+  <li class="list-group-item" *ngFor="let address of addresses.controls; let idx = index">
+    <div class="d-inline-block">{{ address.value | userAddress }}</div>
+    <div class="d-inline-block float-right">
+      <button class="btn btn-outline-warning ml-auto mr-2" (click)="onClickEditAddress(idx)">Edita</button>
+      <button class="btn btn-outline-danger" (click)="onClickDeleteAddress(idx)">Elimina</button>
+    </div>
+  </li>
+</ul>
+
+<ng-template #noAddressesTpl>
+  <div class="my-3">
+    <h4>Actualment no tens cap adreça guardada</h4>
+  </div>
+</ng-template>
