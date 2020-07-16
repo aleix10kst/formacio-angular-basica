@@ -22,10 +22,10 @@ export class AddressFormComponent {
     return this.#_loadedAddress;
   }
 
-  #_loadedAddress: any;
+  #_loadedAddress: Address;
 
-  @Output() addAddress: EventEmitter<any> = new EventEmitter<any>();
-  @Output() updateAddress: EventEmitter<any> = new EventEmitter<any>();
+  @Output() addAddress: EventEmitter<Address> = new EventEmitter<Address>();
+  @Output() updateAddress: EventEmitter<Address> = new EventEmitter<Address>();
   @Output() cancelAddress: EventEmitter<void> = new EventEmitter<void>();
 
   addressForm: FormGroup;
