@@ -12,6 +12,9 @@ const routes: Routes = [
     path: RoutePaths.Checkout, component: CheckoutComponent
   },
   {
+    path: RoutePaths.User, loadChildren: () => import('../user/user.module').then(m => m.UserModule)
+  },
+  {
     path: '', pathMatch: 'full', redirectTo: RoutePaths.Inici
   }
 ];

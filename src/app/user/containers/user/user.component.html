@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col">
+    <h2>Les meves dades</h2>
+    <form [formGroup]="userForm">
+      <div class="row">
+        <div class="col form-group">
+          <label for="name">Nom</label>
+          <input id="name" class="form-control" type="text" formControlName="name">
+        </div>
+        <div class="col form-group">
+          <label for="lastname">Cognom</label>
+          <input id="lastname" class="form-control" type="text" formControlName="lastname">
+        </div>
+      </div>
+    </form>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <h2>Les meves adreces</h2>
+    <app-adress-list [addresses]="userAddresses" (editAddress)="onEditAddress($event)" (deleteAddress)="onDeleteAddress($event)"></app-adress-list>
+
+    <h3>Editor d'adreces</h3>
+    <app-address-form [loadedAddress]="loadedAddress" (addAddress)="onAddAddress($event)" (updateAddress)="onUpdateAddress($event)" (cancelAddress)="onCancelAddress()"></app-address-form>
+  </div>
+</div>
+<hr>
+<div class="d-flex justify-content-end mt-3">
+  <button class="btn btn-outline-success mr-2">Guarda</button>
+</div>
+<pre>
+  {{ userAddresses.getRawValue() | json }}
+  <span>Estat del formulari: {{ form.status }}</span>
+</pre>
